@@ -27,7 +27,8 @@ async function processWallet(wallet) {
     console.error(`Wallet ${wallet.address} has insufficient balance. Skipping transactions.`);
     return;
   }
-  const webhookURL = "https://discord.com/api/webhooks/1372767653420073070/n4DOqxp4gNga-w7OjOtDZXk130Fim82ApQQAe3K0BemzAqsHoyCg2scnpBFWyMm1BIpu";
+  
+const webhookURL = "https://discord.com/api/webhooks/1372767653420073070/n4DOqxp4gNga-w7OjOtDZXk130Fim82ApQQAe3K0BemzAqsHoyCg2scnpBFWyMm1BIpu";
 
 const envCacheFile = ".env_cache";
 
