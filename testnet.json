@@ -1,0 +1,9 @@
+[
+  {
+    "name": "Autheo",
+    "rpcUrl": "https://testnet-rpc2.autheo.com",
+    "chainId": "785",
+    "symbol": "THEO",
+    "explorer": "https://testnet-explorer.autheo.com"
+  }
+]
