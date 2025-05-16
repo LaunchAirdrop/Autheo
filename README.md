@@ -4,30 +4,33 @@
 ## Daily Transaction Bot
 A daily swap automation bot for interacting with Autheo
 
-### 1. Clone Repository
+### * Don't forget to claim
+
+## 1. Clone Repository
 
 ```bash
 git clone https://github.com/LaunchAirdrop/Autheo.git
 ```
 
-### 2. Go To Bot Directory
+## 2. Go To Bot Directory
 ```
 cd Autheo
 ```
 
-### 3. Instal Dependency
+## 3. Instal Dependency
 
 ```bash
 npm install
+npm install axios
 ```
 
-### 4. Edit and Configurate .env File Then Save Your Private Key (CTRL+X, Y enter)
+## 4. Edit and Configurate .env File Then Save Your Private Key (CTRL+X, Y enter)
 Example : `PRIVATE_KEYS=["234567******abcdef"]`
 ```bash
 nano .env
 ```
 
-### 5. Run script & Make Daily Transaction
+## 5. Run script & Make Daily Transaction
 
 ```bash
 npm start
