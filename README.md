@@ -59,11 +59,4 @@ MIT License - See LICENSE file for details
 
 This bot is for educational purposes only. Use at your own risk. The maintainers are not responsible for any lost funds or account issues.
 
-## If this project has been helpful to you, consider supporting me with a coffee or a donation via the following addresses:
-
-### Ethereum (EVM) Address:
-```bash
-0xd43c44E516Ca3E85705F0aD4013e7B637f045290
-```
-
 ## Your support means a lot for the development of this project! ❤️
