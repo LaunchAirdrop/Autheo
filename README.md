@@ -4,7 +4,7 @@
 ## Daily Transaction Bot
 A daily swap automation bot for interacting with Autheo
 
-### * Don't forget to claim
+### * Don't forget to claim the faucet first before running the bot
 
 ## 1. Clone Repository
 
