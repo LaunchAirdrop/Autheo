@@ -12,7 +12,7 @@ git clone https://github.com/LaunchAirdrop/Autheo.git
 
 ### 2. Go To Bot Directory
 ```
-cd autheo
+cd Autheo
 ```
 
 ### 3. Instal Dependency
