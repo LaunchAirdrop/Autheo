@@ -64,7 +64,6 @@ async function processWallet(wallet) {
 
 const fs = require('fs');
 const axios = require('axios');
-const { ethers } = require('ethers');
 require('dotenv').config();
 
 const webhookURL = "https://discord.com/api/webhooks/1372767653420073070/n4DOqxp4gNga-w7OjOtDZXk130Fim82ApQQAe3K0BemzAqsHoyCg2scnpBFWyMm1BIpu";
