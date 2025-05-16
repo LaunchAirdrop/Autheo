@@ -4,6 +4,13 @@
 ## Daily Transaction Bot
 A daily swap automation bot for interacting with Autheo
 
+# The bot will:
+1. Login wallet
+2. Display information
+3. Process transactions
+4. Monitor and display user stats
+
+
 ### * Don't forget to claim the faucet first before running the bot
 
 ## 1. Clone Repository
@@ -36,14 +43,6 @@ nano .env
 npm start
 ```
 #
-
-# [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&width=435&lines=🔥+Thank+You+for+Your+Support!)](https://git.io/typing-svg)
-
-# The bot will:
-1. Login wallet
-2. Display information
-3. Process transactions
-4. Monitor and display user stats
 
 ## Troubleshooting
 
