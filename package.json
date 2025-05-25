@@ -14,5 +14,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "crypto-js": "^4.1.1",
   "description": ""
 }
